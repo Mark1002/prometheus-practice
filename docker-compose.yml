@@ -29,7 +29,7 @@ services:
     depends_on:
       - prometheus
     ports:
-      - '3278:3278'
+      - '3278:3000'
 
 volumes:
   prometheus_data: {}
