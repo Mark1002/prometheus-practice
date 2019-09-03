@@ -4,8 +4,22 @@ services:
     container_name: 'flask_api'
     build: ./api
     ports:
-    - '5000:5000'
+      - '5000:5000'
     volumes:
-    - .:/code
+      - .:/code
     environment:
       FLASK_ENV: 'development'
+
+  prometheus:
+    container_name: 'prometheus'
+    image: prom/prometheus:v2.1.0
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+    ports:
+      - '9090:9090'
+
+volumes:
+  prometheus_data: {}
+  grafana_data: {}
