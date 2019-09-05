@@ -8,19 +8,24 @@ services:
     volumes:
       - .:/code
     environment:
-      FLASK_ENV: 'development'
-
+      - FLASK_ENV=development
+    depends_on:
+      - prometheus
   prometheus:
     container_name: 'prometheus'
     image: prom/prometheus:v2.1.0
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
+      - ./alert_rules.yaml:/etc/prometheus/alert_rules.yaml
     command:
       - '--config.file=/etc/prometheus/prometheus.yaml'
     ports:
       - '9090:9090'
+    depends_on:
+      - alertmanager
   
   grafana:
+    container_name: 'grafana'
     image: grafana/grafana
     volumes:
       - grafana_data:/var/lib/grafana
@@ -30,6 +35,17 @@ services:
       - prometheus
     ports:
       - '3278:3000'
+  
+  alertmanager:
+    container_name: 'alertmanager'
+    image: prom/alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ./alertmanager.yaml/:/etc/alertmanager/alertmanager.yaml
+    command:
+      - '--config.file=/etc/alertmanager/alertmanager.yaml'
+      - '--storage.path=/alertmanager'
 
 volumes:
   prometheus_data: {}
