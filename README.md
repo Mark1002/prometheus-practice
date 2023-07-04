@@ -1,1 +1,2 @@
-# prometheus_pratice
+# prometheus-practice
+
