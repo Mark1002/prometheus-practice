@@ -1,6 +1,14 @@
 # prometheus-practice
 This is a repo that used to practice prometheus & Grafana.
 
+## Requirement
+* Helm Chart version 3+
+* Two hlem repo install
+    
+    1.  https://github.com/prometheus-community/helm-charts/tree/kube-prometheus-stack-66.2.1
+    2. https://github.com/bitnami/charts/tree/main/bitnami/redis
+* MacOS Docker Desktop kubernetes 
+
 ## Deployment
 1. Kube prometheus Stack
 ```bash
