@@ -10,3 +10,10 @@ $ make prom-install
 ```bash
 $ make redis-install
 ```
+3. Start Mock data to redis app
+```bash
+# Start build app docker image
+$ make docker-build
+# Start app as a pod
+$ make start-app 
+```
