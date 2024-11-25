@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: python-app
+  namespace: redis
+spec:
+  restartPolicy: Always
+  containers:
+  - name: python-app
+    image: python-app:latest
+    imagePullPolicy: Never
+    resources:
+      limits:
+        cpu: 300m
+        memory: 512Mi
