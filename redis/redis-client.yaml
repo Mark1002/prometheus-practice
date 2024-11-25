@@ -4,7 +4,7 @@ metadata:
   name: redis-client
   namespace: redis
 spec:
-  restartPolicy: Never
+  restartPolicy: Always
   containers:
   - name: redis-client
     image: docker.io/bitnami/redis:7.4.1-debian-12-r2
